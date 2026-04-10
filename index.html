@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Namuna Paudel</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#d4a843;--gold-light:#f0d080;--gold-pale:#fdf6e3;
+  --ink:#1a1209;--ink-mid:#3d2e12;--ink-soft:#6b5a38;
+  --paper:#faf6ef;--paper-dark:#f0e8d8;--white:#ffffff;
+  --accent:#7c4a1e;--accent-light:#c4804a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.7}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 4rem;background:rgba(250,246,239,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(212,168,67,0.2)}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:1.25rem;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:0.82rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-10%;right:-5%;width:55%;height:120%;background:linear-gradient(135deg,var(--paper-dark) 0%,rgba(212,168,67,0.12) 50%,transparent 100%);border-radius:40% 0 0 60%;z-index:0}
+.hero-text{position:relative;z-index:1}
+.hero-eyebrow{display:inline-block;font-size:0.78rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;padding:0.35rem 0.9rem;border:1px solid var(--gold);border-radius:100px}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,5vw,4.5rem);line-height:1.05;color:var(--ink);margin-bottom:0.5rem}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-location{font-size:0.85rem;color:var(--ink-soft);margin-bottom:1.25rem}
+
+.typer-line{display:flex;align-items:center;height:2rem;margin-bottom:1.25rem}
+#typer{font-size:1.2rem;font-weight:600;color:#d4a843;font-family:'DM Sans',sans-serif}
+.cursor{display:inline-block;width:2px;height:1.3rem;background:#d4a843;margin-left:3px;vertical-align:middle;animation:blink 0.8s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.hero-subtitle{font-size:1rem;color:var(--ink-soft);margin-bottom:2.5rem;max-width:440px;line-height:1.65}
+.btn-group{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.75rem;border-radius:6px;font-size:0.9rem;font-weight:500;text-decoration:none;transition:all 0.22s;cursor:pointer;font-family:inherit;border:none}
+.btn-primary{background:var(--ink);color:var(--gold-light)}
+.btn-primary:hover{background:var(--ink-mid);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink-mid)}
+.btn-outline:hover{background:var(--paper-dark);transform:translateY(-1px)}
+
+.hero-visual{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-end}
+.hero-quote{background:var(--ink);color:var(--gold-pale);border-radius:12px;padding:1.5rem 1.75rem;max-width:300px;font-size:0.88rem;line-height:1.65;font-style:italic;position:relative}
+.hero-quote::before{content:'\201C';font-family:'DM Serif Display',serif;font-size:4rem;color:var(--gold);position:absolute;top:-0.75rem;left:1.25rem;line-height:1}
+
+section{padding:6rem 4rem}
+.section-label{display:inline-block;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);line-height:1.15;color:var(--ink);margin-bottom:2.5rem}
+.divider{width:48px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:2.5rem}
+
+.about{background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-text p{color:var(--ink-soft);margin-bottom:1.25rem}
+.about-text strong{color:var(--ink)}
+.timeline-item{display:grid;grid-template-columns:80px 1fr;gap:1.5rem;padding-bottom:2rem;position:relative}
+.timeline-item:not(:last-child)::after{content:'';position:absolute;left:39px;top:28px;bottom:0;width:1px;background:var(--paper-dark)}
+.timeline-year{font-size:0.75rem;font-weight:600;color:var(--gold);text-align:right;padding-top:2px}
+.timeline-dot{width:20px;height:20px;background:var(--gold);border-radius:50%;border:3px solid var(--white);box-shadow:0 0 0 2px var(--gold);margin:4px auto 0}
+.timeline-content h4{font-weight:600;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem}
+.timeline-content p{font-size:0.83rem;color:var(--ink-soft);margin:0}
+
+.skills{background:var(--paper)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;margin-bottom:3rem}
+.skill-card{background:var(--white);border:1px solid rgba(212,168,67,0.2);border-radius:10px;padding:1.5rem;transition:transform 0.2s,box-shadow 0.2s}
+.skill-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(26,18,9,0.08)}
+.skill-icon{font-size:1.5rem;margin-bottom:0.75rem;display:block}
+.skill-card h4{font-size:0.95rem;font-weight:600;color:var(--ink);margin-bottom:0.35rem}
+.skill-card p{font-size:0.78rem;color:var(--ink-soft)}
+.skill-bar-bg{background:var(--paper-dark);border-radius:100px;height:4px;margin-top:0.6rem}
+.skill-bar-fill{height:4px;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--accent-light))}
+.tech-tag{font-size:0.72rem;font-weight:500;padding:0.2rem 0.6rem;background:var(--paper);border:1px solid var(--paper-dark);border-radius:4px;color:var(--ink-soft)}
+
+.projects{background:var(--white)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.project-card{border:1px solid rgba(26,18,9,0.1);border-radius:12px;padding:2rem;transition:border-color 0.2s,transform 0.2s}
+.project-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.project-tag{display:inline-block;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:rgba(196,128,74,0.12);border-radius:100px;padding:0.2rem 0.7rem;margin-bottom:1rem}
+.project-card h3{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);margin-bottom:0.75rem}
+.project-card p{font-size:0.88rem;color:var(--ink-soft);margin-bottom:1.25rem;line-height:1.65}
+.project-tech{display:flex;flex-wrap:wrap;gap:0.4rem}
+.project-highlight{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:var(--gold);margin-top:0.75rem}
+
+.achievements{background:var(--ink)}
+.achievements .section-title{color:var(--gold-pale)}
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.achievement-card{border:1px solid rgba(212,168,67,0.2);border-radius:12px;padding:1.75rem;position:relative;transition:border-color 0.2s}
+.achievement-card:hover{border-color:var(--gold)}
+.achievement-year{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.75rem;display:block}
+.achievement-card h4{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--gold-pale);margin-bottom:0.5rem}
+.achievement-card p{font-size:0.83rem;color:rgba(253,246,227,0.55);line-height:1.6}
+.achievement-badge{position:absolute;top:1.25rem;right:1.25rem;font-size:1.3rem}
+
+.volunteering{background:var(--paper-dark)}
+.vol-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.vol-card{background:var(--white);border-radius:12px;padding:2rem;border-left:4px solid var(--gold)}
+.vol-card h4{font-weight:600;font-size:1rem;color:var(--ink);margin-bottom:0.35rem}
+.vol-org{font-size:0.82rem;font-weight:600;color:var(--accent);margin-bottom:0.75rem;display:block}
+.vol-card p{font-size:0.85rem;color:var(--ink-soft)}
+
+.contact{background:var(--white);text-align:center}
+.contact-inner{max-width:600px;margin:0 auto}
+.contact p{color:var(--ink-soft);margin-bottom:2.5rem;font-size:1.05rem}
+.contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.contact-email{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--gold);text-decoration:none;display:block;margin-bottom:2rem;transition:color 0.2s}
+.contact-email:hover{color:var(--accent)}
+
+footer{background:var(--ink);text-align:center;padding:2rem 4rem;font-size:0.8rem;color:rgba(253,246,227,0.35)}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{gap:1rem}
+  .hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem}
+  .hero::before{display:none}
+  .hero-visual{align-items:flex-start;margin-top:2rem}
+  .hero-quote{max-width:100%}
+  section{padding:4rem 1.5rem}
+  .about-grid,.vol-grid{grid-template-columns:1fr;gap:3rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">NP</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#loksewa">Loksewa Notes</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-eyebrow">Available for opportunities</span>
+    <h1>Namuna<br><em>Paudel</em></h1>
+    <div class="hero-location">&#128205; Lalbandi-07, Sarlahi, Nepal</div>
+    <div class="typer-line">
+      <span id="typer"></span><span class="cursor"></span>
+    </div>
+    <p class="hero-subtitle">Turning data into decisions &mdash; from rural Nepal to global AI research.</p>
+    <div class="btn-group">
+      <a href="https://github.com/namunapaudel" class="btn btn-primary" target="_blank">View GitHub &#8599;</a>
+      <a href="https://www.linkedin.com/in/namuna-paudel" class="btn btn-outline" target="_blank">LinkedIn</a>
+      <a href="files/Namuna_Paudel_CV.pdf" class="btn btn-outline" download>Download CV</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-quote">
+      Lack of resources does not limit potential &mdash; only lack of opportunity does. I started coding at 19, and I have been building ever since.
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <span class="section-label">My Story</span>
+      <h2 class="section-title">From Candlelight<br>to Code</h2>
+      <div class="divider"></div>
+      <p>I grew up in Sarlahi, <strong> Nepal</strong>, where 16&ndash;18 hour power cuts until my SEE (2017) were daily reality. I studied for my exams by candlelight. There were no computer classes, no mentors, and no one who could tell me what coding even was.</p>
+      <p>When I moved to Kathmandu, I sat in a college lab for the first time at 19, hands trembling, afraid of breaking a machine I could not afford to replace. I earned a <strong>merit-based full scholarship</strong> for my Bachelor's in Computer Engineering and graduated with a <strong>3.79/4.0 CGPA</strong>.</p>
+      <p>Today I build AI-powered tools that solve real problems &mdash; like a mushroom disease classifier that helps Nepali farmers with instant, accurate diagnosis. My goal is to make sure the next generation in underserved communities does not start where I did.</p>
+    </div>
+    <div>
+      <span class="section-label">Journey</span>
+      <div style="margin-top:1rem">
+        <div class="timeline-item">
+          <div><div class="timeline-year">2019</div><div class="timeline-dot"></div></div>
+          <div class="timeline-content"><h4>Joined Nepal Engineering College</h4><p>Full merit scholarship, Computer Engineering &mdash; Pokhara University</p></div>
+        </div>
+        <div class="timeline-item">
+          <div><div class="timeline-year">2021</div><div class="timeline-dot"></div></div>
+          <div class="timeline-content"><h4>Meta Bug Bounty</h4><p>$500 award for identifying a logical security vulnerability on Facebook</p></div>
+        </div>
+        <div class="timeline-item">
+          <div><div class="timeline-year">2024</div><div class="timeline-dot"></div></div>
+          <div class="timeline-content"><h4>Graduated &amp; DataCamp Fellow</h4><p>Dean's List Honours. Selected among 600+ applicants for DataCamp Fellowship</p></div>
+        </div>
+        <div class="timeline-item">
+          <div><div class="timeline-year">2025</div><div class="timeline-dot"></div></div>
+          <div class="timeline-content"><h4>Project Manager Trainee &mdash; Bajra Technologies</h4><p>PRDs, Gantt charts, JIRA, sprint reviews &amp; risk tracking at a US-Nepal firm</p></div>
+        </div>
+        <div class="timeline-item">
+          <div><div class="timeline-year">2025</div><div class="timeline-dot"></div></div>
+          <div class="timeline-content"><h4>Registered Engineer &mdash; NEC</h4><p>Nepal Engineering Council, General Engineer Category A</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <span class="section-label">Expertise</span>
+  <h2 class="section-title">Technical Skills</h2>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <div class="skill-card"><span class="skill-icon">&#128013;</span><h4>Python</h4><p>Pandas, Matplotlib, deep learning frameworks, Django</p><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:72%"></div></div></div>
+    <div class="skill-card"><span class="skill-icon">&#128451;&#65039;</span><h4>SQL / PostgreSQL</h4><p>DataCamp certified. Complex queries, data pipelines</p><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div></div>
+    <div class="skill-card"><span class="skill-icon">&#129504;</span><h4>Machine Learning &amp; AI</h4><p>CNNs, DenseNet121, NASNet, VGG16 &mdash; classification &amp; clustering</p><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:65%"></div></div></div>
+    <div class="skill-card"><span class="skill-icon">&#128202;</span><h4>Data Analysis</h4><p>EDA, visualisation, public health datasets, business insights</p><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:78%"></div></div></div>
+    <div class="skill-card"><span class="skill-icon">&#127760;</span><h4>Django (Web)</h4><p>Deployed ML models as full-stack web platforms</p><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:60%"></div></div></div>
+    <div class="skill-card"><span class="skill-icon">&#128203;</span><h4>Project Management</h4><p>JIRA, Gantt charts, PRDs, sprint reviews, risk assessment</p><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:68%"></div></div></div>
+  </div>
+  <p style="color:var(--ink-soft);font-size:0.85rem;font-weight:600;margin-bottom:1rem;letter-spacing:0.04em">TOOLS &amp; ENVIRONMENT</p>
+  <div style="display:flex;flex-wrap:wrap;gap:0.6rem">
+    <span class="tech-tag">Google Colab</span><span class="tech-tag">Jupyter Notebook</span><span class="tech-tag">VS Code</span><span class="tech-tag">JIRA</span><span class="tech-tag">Microsoft Teams</span><span class="tech-tag">Google Workspace</span><span class="tech-tag">DataCamp</span><span class="tech-tag">GitHub</span>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <span class="section-label">Work</span>
+  <h2 class="section-title">Projects</h2>
+  <div class="divider"></div>
+
+  <div class="projects-grid">
+
+    <div class="project-card" style="border-top:3px solid var(--gold)">
+      <span class="project-tag">Final Year Project · Deep Learning</span>
+      <h3>Oyster Mushroom Disease Classifier</h3>
+      <p>
+        Built a Django-based web platform where farmers upload images and receive instant disease predictions.
+        Trained DenseNet121 on 2,744 farm-sourced images across 5 disease classes — achieving ~95% validation accuracy.
+      </p>
+
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">DenseNet121</span>
+        <span class="tech-tag">TensorFlow</span>
+        <span class="tech-tag">Django</span>
+        <span class="tech-tag">Image Processing</span>
+      </div>
+
+      <a href="https://github.com/yourusername/oyster-mushroom-classifier"
+         target="_blank"
+         class="btn btn-outline"
+         style="margin-top:1rem; display:inline-block;">
+        View on GitHub ↗
+      </a>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">EDA · Public Health</span>
+      <h3>Snakebite Data Analysis — Nepal</h3>
+      <p>
+        Analysed a national snakebite dataset using Pandas and Matplotlib to uncover trends in mortality,
+        cure rates, and public health response patterns across Nepal's provinces.
+      </p>
+
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Pandas</span>
+        <span class="tech-tag">Matplotlib</span>
+        <span class="tech-tag">Public Health</span>
+      </div>
+
+      <a href="https://github.com/namunapaudel/Snake_Bite_Analysis_Nepal"
+         target="_blank"
+         class="btn btn-outline"
+         style="margin-top:1rem; display:inline-block;">
+        View on GitHub ↗
+      </a>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">EDA · Consumer Tech</span>
+      <h3>iPhone Sales Data Analysis</h3>
+      <p>
+        Exploratory data analysis using Python and Pandas to identify sales trends, pricing patterns,
+        and consumer behaviour insights across iPhone product lines.
+      </p>
+
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Pandas</span>
+        <span class="tech-tag">Data Visualisation</span>
+      </div>
+
+      <a href="https://github.com/namunapaudel/Iphone_Data-Analysis-Python"
+         target="_blank"
+         class="btn btn-outline"
+         style="margin-top:1rem; display:inline-block;">
+        View on GitHub ↗
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section class="achievements" id="achievements">
+  <span class="section-label" style="color:var(--gold)">Recognition</span>
+  <h2 class="section-title">Achievements</h2>
+  <div class="divider"></div>
+  <div class="achievements-grid">
+    <div class="achievement-card"><span class="achievement-badge">&#127891;</span><span class="achievement-year">2019</span><h4>Full Scholarship</h4><p>Awarded by Pokhara University based on a competitive national entrance examination. Covered full tuition for a 4-year Computer Engineering degree.</p></div>
+    <div class="achievement-card"><span class="achievement-badge">&#128027;</span><span class="achievement-year">2021</span><h4>Meta Bug Bounty &mdash; $500</h4><p>Identified and responsibly disclosed a logical security vulnerability on the Facebook platform. Recognised at a global level while still an undergraduate.</p></div>
+    <div class="achievement-card"><span class="achievement-badge">&#128202;</span><span class="achievement-year">2024</span><h4>DataCamp Fellowship</h4><p>Selected among 600+ global applicants. Completed Data Engineer Associate and Data Analyst in SQL certifications under the fellowship.</p></div>
+    <div class="achievement-card"><span class="achievement-badge">&#127942;</span><span class="achievement-year">2025</span><h4>Dean's List Honours</h4><p>Official recognition from Pokhara University for outstanding academic performance. Graduated with a 3.79/4.0 CGPA.</p></div>
+    <div class="achievement-card"><span class="achievement-badge">&#128295;</span><span class="achievement-year">2025</span><h4>Registered Engineer &mdash; NEC</h4><p>General Engineer Category A, Nepal Engineering Council. Licensed to practice engineering in Nepal under NEC Act, 2055.</p></div>
+    <div class="achievement-card"><span class="achievement-badge">&#127959;&#65039;</span><span class="achievement-year">2019</span><h4>Best +2 Model &mdash; National Exhibition</h4><p>Winner at the 10th National Civil Engineering Exhibition, CESS &amp; Pulchowk Campus, for a Sustainable City Model design.</p></div>
+  </div>
+</section>
+
+<section class="volunteering">
+  <span class="section-label">Impact</span>
+  <h2 class="section-title">Community &amp; Volunteering</h2>
+  <div class="divider"></div>
+  <div class="vol-grid">
+    <div class="vol-card">
+      <h4>United Nations Online Volunteer</h4>
+      <span class="vol-org">UN Volunteers &middot; Madhesh Province, Nepal &middot; 2022</span>
+      <p>Contributed to the &ldquo;My Vote Matters&rdquo; voter education campaign, helping reach over <strong>200,000 individuals</strong> across social media platforms in Madhesh Province.</p>
+    </div>
+    <div class="vol-card">
+      <h4>Project Sachetana Volunteer</h4>
+      <span class="vol-org">Maina Devi Foundation &amp; UNDP Nepal &middot; All 77 Districts &middot; 2021</span>
+      <p>One of 300 volunteers (selected from 1,200+ applicants) for a nationwide digital healthcare awareness campaign coordinated across all 77 districts of Nepal.</p>
+    </div>
+  </div>
+</section>
+
+<section id="loksewa" style="background:var(--paper)">
+  <span class="section-label">Public Service Prep</span>
+  <h2 class="section-title">Loksewa Computer Engineer</h2>
+  <div class="divider"></div>
+  <p style="color:var(--ink-soft);max-width:640px;margin-bottom:2.5rem;font-size:0.95rem">State-level Loksewa preparation notes prepared by me across multiple subjects &mdash; structured, concise, and tailored for Nepali civil service aspirants. More subjects being added regularly.</p>
+  <div class="projects-grid">
+    <div class="project-card" style="display:flex;flex-direction:column;justify-content:space-between">
+      <div><span class="project-tag">Coming Soon</span><h3>Database Management System</h3><p style="font-size:0.85rem;color:var(--ink-soft)"></p></div>
+      <div style="margin-top:1.25rem"><span style="font-size:0.8rem;color:var(--ink-soft);font-style:italic">&#128194; Notes will be linked here</span></div>
+    </div>
+    <div class="project-card" style="display:flex;flex-direction:column;justify-content:space-between">
+      <div><span class="project-tag">Coming Soon</span><h3>Operating System</h3><p style="font-size:0.85rem;color:var(--ink-soft)"></p></div>
+      <div style="margin-top:1.25rem"><span style="font-size:0.8rem;color:var(--ink-soft);font-style:italic">&#128194; Notes will be linked here</span></div>
+    </div>
+    <div class="project-card" style="display:flex;flex-direction:column;justify-content:space-between">
+      <div><span class="project-tag">Coming Soon</span><h3>Computer Architecture &amp; Microprocessor</h3><p style="font-size:0.85rem;color:var(--ink-soft)"></p></div>
+      <div style="margin-top:1.25rem"><span style="font-size:0.8rem;color:var(--ink-soft);font-style:italic">&#128194; Notes will be linked here</span></div>
+    </div>
+  </div>
+  <div style="margin-top:2rem;padding:1.5rem;background:var(--white);border-radius:10px;border-left:4px solid var(--gold);max-width:600px">
+    <p style="font-size:0.88rem;color:var(--ink-soft);margin:0"><strong style="color:var(--ink)">Want a specific subject?</strong> Reach out via email or LinkedIn &mdash; I prepare notes on request and share them with fellow aspirants.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <span class="section-label">Get in Touch</span>
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="divider" style="margin:0 auto 2rem"></div>
+    <p>Open to data engineering, AI/ML roles, research collaborations, and mentorship &mdash; especially with social impact.</p>
+    <a href="mailto:npaudelwork1@gmail.com" class="contact-email">npaudelwork1@gmail.com</a>
+    <div class="contact-links">
+      <a href="http://www.linkedin.com/in/namuna-paudel" class="btn btn-primary" target="_blank">LinkedIn &#8599;</a>
+      <a href="https://github.com/namunapaudel" class="btn btn-outline" target="_blank">GitHub &#8599;</a>
+      <a href="files/Namuna_Paudel_CV.pdf" class="btn btn-outline" download>Download CV</a>
+    </div>
+  </div>
+</section>
+
+<footer>&#169; 2025 Namuna Paudel &middot; Built with purpose, from Sarlahi to the world.</footer>
+
+<script>
+(function(){
+  var roles = ["Data Analyst","Computer Engineer","Loksewa Tutor","Aspiring AI Engineer"];
+  var ri = 0, ci = 0, del = false;
+  var el = document.getElementById('typer');
+  function tick(){
+    var w = roles[ri];
+    el.textContent = w.substring(0, ci);
+    if(!del){ ci++; if(ci > w.length){ del=true; setTimeout(tick,1200); return; } }
+    else { ci--; if(ci < 0){ del=false; ci=0; ri=(ri+1)%roles.length; } }
+    setTimeout(tick, del ? 50 : 100);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
