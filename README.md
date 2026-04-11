@@ -5,9 +5,6 @@ Personal portfolio website of Namuna Paudel, a Computer Engineering graduate fro
 ##  Live Website
 **[namunapaudel.com.np](https://namunapaudel.com.np)**
 
-## About Me
-I grew up in Sarlahi, Nepal, wrote my first program at 19. I graduated with a 3.79/4.0 CGPA (Dean's List) in Computer Engineering from Pokhara University on a full merit scholarship. I build AI solutions for real-world problems — particularly in agriculture and education — and I want to bring that work back to the communities that need it most.
-
 ## Built With
 - HTML5
 - CSS3 / SCSS
